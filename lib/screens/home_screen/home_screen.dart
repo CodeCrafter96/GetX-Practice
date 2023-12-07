@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:getx_practice/routes/app_routes.dart';
+
 import 'package:getx_practice/screens/cart/cart_controller.dart';
-import 'package:getx_practice/screens/cart/cart_screen.dart';
 import 'package:getx_practice/screens/home_screen/home_controller.dart';
+import 'package:getx_practice/screens/login_form/login_screen.dart';
 import 'package:getx_practice/screens/photos/img_controller.dart';
-import 'package:getx_practice/screens/photos/img_screen.dart';
 import 'package:getx_practice/screens/post/post_controller.dart';
-import 'package:getx_practice/screens/post/post_screen.dart';
 import 'package:getx_practice/screens/product/product_controller.dart';
-import 'package:getx_practice/screens/product/product_screen.dart';
 
 import 'package:getx_practice/utils/loader.dart';
 
@@ -27,10 +25,6 @@ class HomeScreen extends StatelessWidget {
   final productController = Get.find<ProductController>();
   final cartController = Get.find<CartController>();
 
-  // final postController = Get.put(PostController());
-  // final imageController = Get.put(ImageController());
-  // final productController = Get.put(ProductController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +32,7 @@ class HomeScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
+            // Post data button
             ElevatedButton(
               onPressed: () async {
                 Utils.showLoader();
@@ -48,6 +43,7 @@ class HomeScreen extends StatelessWidget {
               child: const Text('Fetch Data'),
             ),
             const SizedBox(height: 18),
+            //Photos Button
             ElevatedButton(
               onPressed: () async {
                 Utils.showLoader();
@@ -72,7 +68,6 @@ class HomeScreen extends StatelessWidget {
                   child: const Text('Product List'),
                 ),
                 const SizedBox(width: 18),
-
                 // Card List Button
                 ElevatedButton(
                   onPressed: () async {
@@ -84,6 +79,15 @@ class HomeScreen extends StatelessWidget {
                   child: const Text('Cart List'),
                 ),
               ],
+            ),
+            // login validation
+            const SizedBox(width: 18),
+            ElevatedButton(
+              onPressed: () {
+                // homeController.goToLoginScreen();
+                Get.toNamed(AppRoutes.loginScreen, arguments: "This is Login Screen");
+              },
+              child: const Text('Login Page'),
             ),
           ],
         ),

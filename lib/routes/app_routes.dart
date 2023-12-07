@@ -4,4 +4,5 @@ class AppRoutes {
   static const postScreen = "/PostScreen";
   static const productScreen = "/ProductScreen";
   static const cartScreen = "/CartScreen";
+  static const loginScreen = "/LoginScreen";
 }

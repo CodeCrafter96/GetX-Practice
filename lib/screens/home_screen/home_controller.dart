@@ -18,4 +18,8 @@ class HomeController extends GetxController{
   void goToCartScreen(){
     Get.toNamed(AppRoutes.cartScreen);
   }
+
+  void goToLoginScreen(){
+    Get.toNamed(AppRoutes.loginScreen);
+  }
 }

@@ -4,6 +4,8 @@ import 'package:getx_practice/screens/cart/cart_binding.dart';
 import 'package:getx_practice/screens/cart/cart_screen.dart';
 import 'package:getx_practice/screens/home_screen/home_binding.dart';
 import 'package:getx_practice/screens/home_screen/home_screen.dart';
+import 'package:getx_practice/screens/login_form/login_binding.dart';
+import 'package:getx_practice/screens/login_form/login_screen.dart';
 import 'package:getx_practice/screens/photos/image_binding.dart';
 import 'package:getx_practice/screens/photos/img_screen.dart';
 import 'package:getx_practice/screens/post/post_binding.dart';
@@ -37,6 +39,11 @@ class AppPage {
       name: AppRoutes.cartScreen,
       page: () => CartScreen(),
       binding: CartBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.loginScreen,
+      page: () => LoginScreeen(),
+      binding: LoginBinding(),
     ),
   ];
 }

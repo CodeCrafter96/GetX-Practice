@@ -4,12 +4,10 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:getx_practice/routes/app_page.dart';
 import 'package:getx_practice/routes/app_routes.dart';
-import 'package:getx_practice/screens/cart/cart_controller.dart';
 import 'package:getx_practice/screens/home_screen/home_binding.dart';
 
 Future<void> main() async {
   await GetStorage.init();
-
   runApp(const MyApp());
 }
 
