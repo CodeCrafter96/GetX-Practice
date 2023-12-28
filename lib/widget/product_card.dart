@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_practice/data/storage/local_storage.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
     super.key,
-    required this.cartList,
+    this.cartList,
+    this.wishList,
   });
 
-  final List cartList;
-
+  final List? cartList;
+  final List? wishList;
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       return ListView.builder(
-          itemCount: cartList.length,
+          itemCount: cartList!.length,
           itemBuilder: (context, index) {
             return Container(
               margin: const EdgeInsets.only(bottom: 14, left: 20, right: 20),
@@ -34,8 +34,8 @@ class ProductCard extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(top: 12),
                     alignment: Alignment.topLeft,
-                    child:
-                        Image.network(cartList[index].image.toString(), height: 80),
+                    child: Image.network(cartList![index].image.toString(),
+                        height: 80),
                   ),
                   Expanded(
                     child: Column(
@@ -44,13 +44,13 @@ class ProductCard extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 16, top: 8),
                           child: Text(
-                            cartList[index].title.toString(),
+                            cartList![index].title.toString(),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 16, top: 8),
-                          child: Text('₹ ${cartList[index].price.toString()}'),
+                          child: Text('₹ ${cartList![index].price.toString()}'),
                         ),
                       ],
                     ),

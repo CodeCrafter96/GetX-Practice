@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:getx_practice/screens/cart/cart_controller.dart';
-import 'package:getx_practice/screens/product/product_controller.dart';
 import 'package:getx_practice/utils/constant.dart';
 
 class ProductWidget extends StatelessWidget {
@@ -11,7 +10,8 @@ class ProductWidget extends StatelessWidget {
     required this.productList,
   });
 
-  var cartController = Get.find<CartController>();
+  final cartController = Get.find<CartController>();
+  // final wishlistController = Get.find<WishlistController>();
 
   final List productList;
 
@@ -45,6 +45,7 @@ class ProductWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
+                        alignment: Alignment.center,
                         margin: const EdgeInsets.only(top: 12),
                         child: Image.network(
                             productList[index].image.toString(),
@@ -61,24 +62,28 @@ class ProductWidget extends StatelessWidget {
                       Text('₹ ${productList[index].price.toString()}'),
                     ],
                   ),
+                  // Add to cart button
                   Container(
                     height: double.infinity,
                     width: double.infinity,
                     // color: Colors.amberAccent,
-                    alignment: Alignment.bottomRight,
-                    padding: const EdgeInsets.only(right: 14, bottom: 14),
+                    alignment: Alignment.bottomCenter,
+                    padding:
+                        const EdgeInsets.only(bottom: 6, left: 14, right: 14),
                     child: InkWell(
                       onTap: () {
                         print('index that click: ${productList[index].id}');
 
                         //SnackBar
-                        Get.showSnackbar(GetSnackBar(
-                          title: productList[index].title,
-                          message: 'Added to cart',
-                          duration: const Duration(seconds: 2),
-                        ));
+                        Get.showSnackbar(
+                          GetSnackBar(
+                            title: productList[index].title,
+                            message: 'Added to cart',
+                            duration: const Duration(seconds: 2),
+                          ),
+                        );
 
-                        // Add data in new list
+                        // Add data in cart list
                         cartController.getClickedProductDataController(
                           productList[index].id!.toInt(),
                           productList[index].image.toString(),
@@ -86,32 +91,80 @@ class ProductWidget extends StatelessWidget {
                           productList[index].price!.toDouble(),
                         );
                       },
-                      child: cartController
-                              .isIdInCartList(productList[index].id!.toInt())
-                          ? Container(
-                              width: double.infinity,
-                              child: const Text(
-                                "Item Added to cart",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.orange),
+                      child: Obx(
+                        () => cartController
+                                .isIdInCartList(productList[index].id!.toInt())
+                            ? const SizedBox(
+                                width: double.infinity,
+                                child: Text(
+                                  "Item Added to cart",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.orange),
+                                ),
+                              )
+                            : Container(
+                                height: 34,
+                                width: double.infinity,
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: Colors.orange),
+                                  shape: BoxShape.rectangle,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      addToCart,
+                                      fit: BoxFit.cover,
+                                      height: 18,
+                                      width: 18,
+                                    ),
+                                    SizedBox(width: 12),
+                                    const Text(
+                                      "Add to cart",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.orange,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            )
-                          : Container(
-                              height: 34,
-                              width: 34,
-                              padding: const EdgeInsets.all(4),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: Colors.orange),
-                                shape: BoxShape.rectangle,
-                              ),
-                              child: SvgPicture.asset(
-                                addToCart,
-                                fit: BoxFit.cover,
-                                height: 14,
-                                width: 14,
-                              ),
-                            ),
+                      ),
+                    ),
+                  ),
+                  // Wishlist hear button
+                  Container(
+                    height: 44,
+                    width: double.infinity,
+                    // color: Colors.amberAccent,
+                    alignment: Alignment.topRight,
+                    padding: const EdgeInsets.only(right: 14, top: 14),
+                    child: GestureDetector(
+                      onTap: () {
+                        print('wishlist that click: ${productList[index].id}');
+
+                        // Add data in cart list
+                        cartController.getClickedWishlistDataController(
+                          productList[index].id!.toInt(),
+                          productList[index].image.toString(),
+                          productList[index].title.toString(),
+                          productList[index].price!.toDouble(),
+                        );
+                      },
+                      child: Obx(
+                        () =>
+                            cartController.isIdInWishList(productList[index].id)
+                                ? const Icon(
+                                    Icons.favorite,
+                                    color: Colors.pink,
+                                  )
+                                : const Icon(
+                                    Icons.favorite_border,
+                                  ),
+                      ),
                     ),
                   ),
                 ],

@@ -13,15 +13,17 @@ class ProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Products'),
+        title: const Text('Products'),
         actions: <Widget>[
           Container(
-            margin: EdgeInsets.only(right: 24),
+            margin: const EdgeInsets.only(right: 24),
             child: ShoppingCartBadge(),
           ),
         ],
       ),
-      body: ProductWidget(productList: productController.productList,),
+      body: ProductWidget(
+        productList: productController.productList,
+      ),
     );
   }
 }

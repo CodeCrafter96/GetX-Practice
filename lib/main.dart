@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+
 import 'package:getx_practice/routes/app_page.dart';
 import 'package:getx_practice/routes/app_routes.dart';
 import 'package:getx_practice/screens/home_screen/home_binding.dart';
@@ -26,7 +27,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // home: HomeScreen(),/
     );
   }
 }

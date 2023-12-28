@@ -13,7 +13,6 @@ class ProductController extends GetxController {
       var data = await FetchProductDataAPI().fetchProductData();
       var productData =
           data.map((json) => ProductModel.fromJson(json)).toList();
-      print("this is product data : ${productData}");
       productList.assignAll(productData);
     } finally {
       isLoading(false);

@@ -12,6 +12,8 @@ import 'package:getx_practice/screens/post/post_binding.dart';
 import 'package:getx_practice/screens/post/post_screen.dart';
 import 'package:getx_practice/screens/product/product_binding.dart';
 import 'package:getx_practice/screens/product/product_screen.dart';
+import 'package:getx_practice/screens/wishlist/wishlist_binding.dart';
+import 'package:getx_practice/screens/wishlist/wishlist_screen.dart';
 
 class AppPage {
   static final List<GetPage> getPage = [
@@ -44,6 +46,11 @@ class AppPage {
       name: AppRoutes.loginScreen,
       page: () => LoginScreeen(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.wishlistScreen,
+      page: () => WishlistScreen(),
+      binding: WishlistBinding(),
     ),
   ];
 }

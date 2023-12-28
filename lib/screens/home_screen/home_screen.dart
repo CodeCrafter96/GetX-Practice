@@ -9,6 +9,7 @@ import 'package:getx_practice/screens/login_form/login_screen.dart';
 import 'package:getx_practice/screens/photos/img_controller.dart';
 import 'package:getx_practice/screens/post/post_controller.dart';
 import 'package:getx_practice/screens/product/product_controller.dart';
+import 'package:getx_practice/screens/wishlist/wishlist_controller.dart';
 
 import 'package:getx_practice/utils/loader.dart';
 
@@ -24,6 +25,7 @@ class HomeScreen extends StatelessWidget {
   final imageController = Get.find<ImageController>();
   final productController = Get.find<ProductController>();
   final cartController = Get.find<CartController>();
+  // final wishlistController = Get.find<WishlistController>();
 
   @override
   Widget build(BuildContext context) {
@@ -80,12 +82,23 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
+            // Wishlist
+            ElevatedButton(
+              onPressed: () async {
+                Utils.showLoader();
+                await cartController.loadWishlistFromStorage();
+                Get.back();
+                homeController.goToWishlistScreen();
+              },
+              child: const Text('Whishlist'),
+            ),
             // login validation
             const SizedBox(width: 18),
             ElevatedButton(
               onPressed: () {
                 // homeController.goToLoginScreen();
-                Get.toNamed(AppRoutes.loginScreen, arguments: "This is Login Screen");
+                Get.toNamed(AppRoutes.loginScreen,
+                    arguments: "This is Login Screen");
               },
               child: const Text('Login Page'),
             ),
