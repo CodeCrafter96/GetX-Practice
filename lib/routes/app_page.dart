@@ -14,6 +14,7 @@ import 'package:getx_practice/screens/product/product_binding.dart';
 import 'package:getx_practice/screens/product/product_screen.dart';
 import 'package:getx_practice/screens/wishlist/wishlist_binding.dart';
 import 'package:getx_practice/screens/wishlist/wishlist_screen.dart';
+import 'package:getx_practice/widget/no_internet_found.dart';
 
 class AppPage {
   static final List<GetPage> getPage = [
@@ -51,6 +52,10 @@ class AppPage {
       name: AppRoutes.wishlistScreen,
       page: () => WishlistScreen(),
       binding: WishlistBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.noInternetFound,
+      page: () => NoInternetFound(),
     ),
   ];
 }

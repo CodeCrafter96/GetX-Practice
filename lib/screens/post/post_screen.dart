@@ -10,43 +10,30 @@ class PostScreen extends StatefulWidget {
 class _PostScreenState extends State<PostScreen> {
   final postController = Get.find<PostController>();
 
-  final ScrollController _scrollController = ScrollController();
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        postController.fetchPostDataController();
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Posts')),
       body: Obx(() {
-        return ListView.builder(
-          controller: _scrollController,
-          padding: const EdgeInsets.only(bottom: 4),
-          itemCount: postController.postList.length + 1,
-          itemBuilder: (context, index) {
-            if (index < postController.postList.length) {
-              return ListTile(
-                title: Text(postController.postList[index].title),
-                subtitle: Text(postController.postList[index].body),
-              );
-            } else {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: CircularProgressIndicator(),
+        return SingleChildScrollView(
+          controller: postController.scrollController,
+          child: Column(
+            children: [
+              for (var post in postController.postList)
+                ListTile(
+                  title: Text(post.title),
+                  subtitle: Text(post.body),
                 ),
-              );
-            }
-          },
+              if (postController.isLoading.value &&
+                  postController.hasMoreData.value)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+            ],
+          ),
         );
       }),
     );

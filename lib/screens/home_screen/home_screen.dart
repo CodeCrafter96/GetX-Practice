@@ -5,13 +5,11 @@ import 'package:getx_practice/routes/app_routes.dart';
 
 import 'package:getx_practice/screens/cart/cart_controller.dart';
 import 'package:getx_practice/screens/home_screen/home_controller.dart';
-import 'package:getx_practice/screens/login_form/login_screen.dart';
 import 'package:getx_practice/screens/photos/img_controller.dart';
 import 'package:getx_practice/screens/post/post_controller.dart';
 import 'package:getx_practice/screens/product/product_controller.dart';
-import 'package:getx_practice/screens/wishlist/wishlist_controller.dart';
-
 import 'package:getx_practice/utils/loader.dart';
+import 'package:getx_practice/widget/appdrawer.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
@@ -30,7 +28,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Main Screen')),
+      appBar: AppBar(title: Text('Main Screen'.tr)),
+      drawer: AppDrawer(),
       body: Center(
         child: Column(
           children: [
@@ -39,10 +38,12 @@ class HomeScreen extends StatelessWidget {
               onPressed: () async {
                 Utils.showLoader();
                 await postController.fetchPostDataController();
+
                 Get.back();
+
                 homeController.goToPostScreen();
               },
-              child: const Text('Fetch Data'),
+              child: Text('Fetch Data'.tr),
             ),
             const SizedBox(height: 18),
             //Photos Button
@@ -53,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                 Get.back();
                 homeController.goToImageScreen();
               },
-              child: const Text('Fetch Image data'),
+              child: Text('Fetch Image Data'.tr),
             ),
             const SizedBox(height: 18),
             Row(
@@ -67,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                     Get.back();
                     homeController.goToProductScreen();
                   },
-                  child: const Text('Product List'),
+                  child: Text('Product List'.tr),
                 ),
                 const SizedBox(width: 18),
                 // Card List Button
@@ -78,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                     Get.back();
                     homeController.goToCartScreen();
                   },
-                  child: const Text('Cart List'),
+                  child: Text('Cart List'.tr),
                 ),
               ],
             ),
@@ -90,7 +91,7 @@ class HomeScreen extends StatelessWidget {
                 Get.back();
                 homeController.goToWishlistScreen();
               },
-              child: const Text('Whishlist'),
+              child: Text('Wish List'.tr),
             ),
             // login validation
             const SizedBox(width: 18),
@@ -100,7 +101,7 @@ class HomeScreen extends StatelessWidget {
                 Get.toNamed(AppRoutes.loginScreen,
                     arguments: "This is Login Screen");
               },
-              child: const Text('Login Page'),
+              child: Text('Login Page'.tr),
             ),
           ],
         ),

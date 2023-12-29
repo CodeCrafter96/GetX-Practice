@@ -6,4 +6,5 @@ class AppRoutes {
   static const cartScreen = "/CartScreen";
   static const loginScreen = "/LoginScreen";
   static const wishlistScreen = "/WishlistScreen";
+  static const noInternetFound = "/NoInternetFound";
 }
