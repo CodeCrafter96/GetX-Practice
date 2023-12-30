@@ -30,31 +30,31 @@ class PostController extends GetxController {
       var data = await FetchPostDataAPI().fetchPostData(currentPage.value);
       var postData = (data).map((json) => Post.fromJson(json)).toList();
       // postList.assignAll(postData);
-      if (postData.length < 12) {
+      if (postData.length < 10) {
         hasMoreData.value = false;
       }
       if (currentPage.value == 1) {
-        postList.assignAll(postData.take(12).toList());
+        postList.assignAll(postData.take(10).toList());
       } else {
         postList.addAll(postData);
       }
-      isLoading.value = false;
     } finally {
       isLoading(false);
     }
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    postList.clear();
+  // Pull to refresh data
+
+  Future<void> refreshPostDataController() async {
+    try {
+      await fetchPostDataController();
+    } finally {
+      Future.delayed(Duration(seconds: 8), () {});
+    }
   }
 
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    postList.clear();
-    super.onClose();
+  void reinitializePostController() {
+    Get.delete<PostController>();
+    Get.put(PostController());
   }
 }

@@ -41,6 +41,7 @@ dependencies:
   flutter_svg: ^2.0.9
   rive: ^0.12.3
   connectivity_plus: ^5.0.2
+  lazy_load_scrollview: ^1.3.0
 
 dev_dependencies:
   flutter_test:

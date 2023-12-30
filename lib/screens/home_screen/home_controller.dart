@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_practice/data/storage/local_storage.dart';
 import 'package:getx_practice/routes/app_routes.dart';
+import 'package:getx_practice/screens/post/post_controller.dart';
 import 'package:getx_practice/widget/no_internet_found.dart';
 
 class HomeController extends GetxController {
@@ -16,6 +17,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
     // Retrieve the selected language from GetStorage when the controller is initialized
     selectedLanguage.value = box.read('language') ?? 'English';
 

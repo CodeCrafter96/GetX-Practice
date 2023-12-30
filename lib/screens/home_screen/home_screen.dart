@@ -37,10 +37,13 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 Utils.showLoader();
+                postController.reinitializePostController();
+                if (postController.postList.isEmpty) {
+                  print('List Is Empty');
+                  await postController.fetchPostDataController();
+                }
                 await postController.fetchPostDataController();
-
                 Get.back();
-
                 homeController.goToPostScreen();
               },
               child: Text('Fetch Data'.tr),
