@@ -12,6 +12,7 @@ import 'package:getx_practice/screens/post/post_binding.dart';
 import 'package:getx_practice/screens/post/post_screen.dart';
 import 'package:getx_practice/screens/product/product_binding.dart';
 import 'package:getx_practice/screens/product/product_screen.dart';
+import 'package:getx_practice/screens/product_detail/product_detail_screen.dart';
 import 'package:getx_practice/screens/wishlist/wishlist_binding.dart';
 import 'package:getx_practice/screens/wishlist/wishlist_screen.dart';
 import 'package:getx_practice/widget/no_internet_found.dart';
@@ -56,6 +57,10 @@ class AppPage {
     GetPage(
       name: AppRoutes.noInternetFound,
       page: () => NoInternetFound(),
+    ),
+    GetPage(
+      name: AppRoutes.productDetailScreen,
+      page: () => ProductDetailScreen(),
     ),
   ];
 }

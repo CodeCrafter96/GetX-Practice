@@ -34,20 +34,34 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             // Post data button
-            ElevatedButton(
-              onPressed: () async {
-                Utils.showLoader();
-                postController.reinitializePostController();
-                if (postController.postList.isEmpty) {
-                  print('List Is Empty');
-                  await postController.fetchPostDataController();
-                }
-                await postController.fetchPostDataController();
-                Get.back();
-                homeController.goToPostScreen();
+            TweenAnimationBuilder(
+              tween: Tween<double>(begin: 0, end: 1),
+              duration: Duration(milliseconds: 1000),
+              curve: Curves.easeInQuart,
+              builder: (BuildContext context, double value, Widget? child) {
+                return Opacity(
+                  opacity: value,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: value * 10),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        Utils.showLoader();
+                        postController.reinitializePostController();
+                        if (postController.postList.isEmpty) {
+                          print('List Is Empty');
+                          await postController.fetchPostDataController();
+                        }
+                        await postController.fetchPostDataController();
+                        Get.back();
+                        homeController.goToPostScreen();
+                      },
+                      child: Text('Fetch Data'.tr),
+                    ),
+                  ),
+                );
               },
-              child: Text('Fetch Data'.tr),
             ),
+
             const SizedBox(height: 18),
             //Photos Button
             ElevatedButton(
